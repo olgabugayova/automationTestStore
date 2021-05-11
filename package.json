@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha *.spec.js -timeout 50000"
+    "test": "mocha *.spec.js -timeout 50000 --require @babel/register"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,16 @@
   },
   "homepage": "https://github.com/olgabugayova/planyway#readme",
   "dependencies": {
-    "@babel/core": "^7.14.0",
-    "@babel/register": "^7.13.16",
+    "@babel/cli": "^7.13.16",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.14.1",
+    "chai": "^4.3.4",
+    "faker": "^5.5.3",
     "mocha": "^8.4.0",
     "playwright": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/register": "^7.13.16"
   }
 }
