@@ -2,7 +2,7 @@ import chai from 'chai';
 import { goto, run, stop } from './framework/lib/browser';
 const {expect} = chai;
 
-describe('Это демо сьюит', () => {
+describe.skip('Это демо сьюит', () => {
     let page;
     beforeEach(async () => {
         await run();

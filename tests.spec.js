@@ -13,7 +13,7 @@ describe('Регистрация и логин', () => {
     });
 
 
-    it('Регистрация', async() => {
+    it.skip('Регистрация', async() => {
         await page.waitForSelector('#customer_menu_top');
         await page.click('#customer_menu_top');
         await page.click('#accountFrm > fieldset > button');
@@ -44,7 +44,7 @@ describe('Регистрация и логин', () => {
 
     });
 
-    it('Это демо тест', async() => {
+    it.skip('Авторизация', async() => {
         await page.waitForSelector('.block_2 > #customernav > #customer_menu_top > li > a');
         await page.click('.block_2 > #customernav > #customer_menu_top > li > a');
         await page.waitForSelector('#loginFrm #loginFrm_loginname');
@@ -89,33 +89,34 @@ describe('UI tests', async () => {
         const profileName = ('#customer_menu_top > li > a > .menu_text');
         await page.waitForSelector(profileName);
         await goto('https://automationteststore.com');
-        });
-    })
+    });
     afterEach(async () => {
         await stop();
     });
 
-    it('Это демо тест', async() => {
-        await page.waitForSelector('li:nth-child(2) > .subcategories > ul > li:nth-child(1) > a')
-            await page.click('li:nth-child(2) > .subcategories > ul > li:nth-child(1) > a')
+    it('Добавление товара в корзину', async() => {
+        await page.waitForSelector('#categorymenu > nav > ul > li:nth-child(2) > a');
+        await page.click('#categorymenu > nav > ul > li:nth-child(2) > a');
 
-            await navigationPromise
+        await page.waitForSelector('#maincontainer > div > div > div > div > ul > li:nth-child(1) > div > a');
+        await page.click('#maincontainer > div > div > div > div > ul > li:nth-child(1) > div > a');
 
-            await page.waitForSelector('.thumbnails > .col-md-3:nth-child(1) > .thumbnail > a > img')
-            await page.click('.thumbnails > .col-md-3:nth-child(1) > .thumbnail > a > img')
+        await page.waitForSelector('#maincontainer > div > div > div > div > div.thumbnails.grid.row.list-inline > div:nth-child(1) > div.fixed_wrapper > div > a');
+        await page.click('#maincontainer > div > div > div > div > div.thumbnails.grid.row.list-inline > div:nth-child(1) > div.fixed_wrapper > div > a');
 
-            await navigationPromise
+        await page.waitForSelector('#option344747');
+        await page.click('#option344747');
+        await page.fill('#product_quantity', '2');
 
-            await page.waitForSelector('fieldset #option344747')
-            await page.click('fieldset #option344747')
+        const itemName = ('#product_details > div > div:nth-child(2) > div > div > h1 > span');
+        const itemNameText = await page.textContent(itemName);
 
-            await page.waitForSelector('fieldset > .mt20 > .productpagecart > li > .cart')
-            await page.click('fieldset > .mt20 > .productpagecart > li > .cart')
+        await page.click('#product > fieldset > div:nth-child(6) > ul > li > a');
 
-            await navigationPromise
-
-            await browser.close()
-        })()
+        await page.waitForSelector('#maincontainer > div > div > div > h1 > span');
+        const cartItemText = await page.textContent('#cart > div > div.container-fluid.cart-info.product-list > table > tbody > tr:nth-child(2) > td:nth-child(2) > a');
+        console.log(cartItemText);
+        expect(cartItemText).to.have.string(itemNameText);
 
     });
-})
+});
