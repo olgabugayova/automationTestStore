@@ -13,13 +13,13 @@ describe('Регистрация и авторизация в системе', (
         await stop();
     });
 
-
     it('Регистрация', async() => {
         await page.waitForSelector('#customer_menu_top');
         await page.click('#customer_menu_top');
         await page.click('#accountFrm > fieldset > button');
+        const firstName = new PersonBuilder().addFirstName()
         await page.click('#AccountFrm_firstname');
-        await page.fill('#AccountFrm_firstname', new PersonBuilder().addFirstName());
+        await page.fill('#AccountFrm_firstname', firstName);
         await page.click('#AccountFrm_lastname');
         await page.fill('#AccountFrm_lastname', new PersonBuilder().addLastName());
         await page.click('#AccountFrm_email');
@@ -41,12 +41,14 @@ describe('Регистрация и авторизация в системе', (
         await page.fill('#AccountFrm_confirm', password);
         await page.click('#AccountFrm_agree');
         await page.click('#AccountFrm > div.form-group > div > div > button');
-
+        await page.waitForSelector('#customer_menu_top > li > a > .menu_text');
+        const profileNameText = await page.textContent('#customer_menu_top > li > a > .menu_text');
+        expect(profileNameText).to.have.string(firstName);
     });
 
     it('Авторизация', async() => {
-        await page.waitForSelector('.block_2 > #customernav > #customer_menu_top > li > a');
-        await page.click('.block_2 > #customernav > #customer_menu_top > li > a');
+        await page.waitForSelector('#customer_menu_top');
+        await page.click('#customer_menu_top');
         await page.waitForSelector('#loginFrm #loginFrm_loginname');
         await page.click('#loginFrm #loginFrm_loginname');
         await page.fill('#loginFrm #loginFrm_loginname', 'test_user5670695');
@@ -58,12 +60,9 @@ describe('Регистрация и авторизация в системе', (
         await page.waitForSelector('.col-sm-6 > .loginbox > #loginFrm > fieldset > .btn');
         await page.click('.col-sm-6 > .loginbox > #loginFrm > fieldset > .btn');
 
-        const profileName = ('#customer_menu_top > li > a > .menu_text');
-        await page.waitForSelector(profileName);
-        const profileNameText = await page.textContent(profileName);
+        await page.waitForSelector('#customer_menu_top > li > a > .menu_text');
+        const profileNameText = await page.textContent('#customer_menu_top > li > a > .menu_text');
         expect('Welcome back Olga').to.have.string(profileNameText);
-        await page.click(profileName);
-
     });
 });
 
@@ -86,8 +85,7 @@ describe('UI tests', async () => {
         await page.waitForSelector('.col-sm-6 > .loginbox > #loginFrm > fieldset > .btn');
         await page.click('.col-sm-6 > .loginbox > #loginFrm > fieldset > .btn');
 
-        const profileName = ('#customer_menu_top > li > a > .menu_text');
-        await page.waitForSelector(profileName);
+        await page.waitForSelector('#customer_menu_top > li > a > .menu_text');
         await goto('https://automationteststore.com');
     });
     afterEach(async () => {
@@ -106,7 +104,6 @@ describe('UI tests', async () => {
 
         await page.waitForSelector('#option344747');
         await page.click('#option344747');
-        await page.fill('#product_quantity', '2');
 
         const itemName = ('#product_details > div > div:nth-child(2) > div > div > h1 > span');
         const itemNameText = await page.textContent(itemName);
@@ -118,8 +115,8 @@ describe('UI tests', async () => {
         expect(cartItemText).to.have.string(itemNameText);
 
         await page.click('#cart > div > div.container-fluid.cart-info.product-list > table > tbody > tr:nth-child(2) > td:nth-child(7) > a');
-
     });
+
     it('Удаление товаров из корзины', async() => {
         await page.waitForSelector('#categorymenu > nav > ul > li:nth-child(2) > a');
         await page.click('#categorymenu > nav > ul > li:nth-child(2) > a');
@@ -132,10 +129,6 @@ describe('UI tests', async () => {
 
         await page.waitForSelector('#option344747');
         await page.click('#option344747');
-        await page.fill('#product_quantity', '2');
-
-        const itemName = ('#product_details > div > div:nth-child(2) > div > div > h1 > span');
-        const itemNameText = await page.textContent(itemName);
 
         await page.click('#product > fieldset > div:nth-child(6) > ul > li > a');
 
@@ -161,7 +154,6 @@ describe('UI tests', async () => {
 
         await page.waitForSelector('#option344747');
         await page.click('#option344747');
-        await page.fill('#product_quantity', '2');
 
         const itemNameText = await page.textContent('#product_details > div > div:nth-child(2) > div > div > h1 > span');
 
@@ -183,8 +175,6 @@ describe('UI tests', async () => {
         const invoiceProductName = await page.textContent('#maincontainer > div > div.col-md-9.col-xs-12.mt20 > div > div > div:nth-child(2) > div.col-md-12.col-xs-12 > table > tbody > tr:nth-child(2) > td:nth-child(2) > a');
 
         expect(invoiceProductName).to.have.string(itemNameText);
-
-
 
     });
 });
