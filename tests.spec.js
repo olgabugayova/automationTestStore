@@ -14,7 +14,7 @@ describe('Регистрация и авторизация в системе', (
     });
 
 
-    it.only('Регистрация', async() => {
+    it('Регистрация', async() => {
         await page.waitForSelector('#customer_menu_top');
         await page.click('#customer_menu_top');
         await page.click('#accountFrm > fieldset > button');
@@ -44,7 +44,7 @@ describe('Регистрация и авторизация в системе', (
 
     });
 
-    it.skip('Авторизация', async() => {
+    it('Авторизация', async() => {
         await page.waitForSelector('.block_2 > #customernav > #customer_menu_top > li > a');
         await page.click('.block_2 > #customernav > #customer_menu_top > li > a');
         await page.waitForSelector('#loginFrm #loginFrm_loginname');
