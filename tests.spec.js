@@ -120,7 +120,7 @@ describe('UI tests', async () => {
         await page.click('#cart > div > div.container-fluid.cart-info.product-list > table > tbody > tr:nth-child(2) > td:nth-child(7) > a');
 
     });
-    it('Очистить корзину', async() => {
+    it('Удаление товаров из корзины', async() => {
         await page.waitForSelector('#categorymenu > nav > ul > li:nth-child(2) > a');
         await page.click('#categorymenu > nav > ul > li:nth-child(2) > a');
 
@@ -149,7 +149,7 @@ describe('UI tests', async () => {
         expect(itemsInCart).to.have.string('0');
 
     });
-    it('Оформить заказ', async() => {
+    it('Оформление заказа', async() => {
         await page.waitForSelector('#categorymenu > nav > ul > li:nth-child(2) > a');
         await page.click('#categorymenu > nav > ul > li:nth-child(2) > a');
 
