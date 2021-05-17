@@ -115,7 +115,6 @@ describe('UI tests', async () => {
 
         await page.waitForSelector('#maincontainer > div > div > div > h1 > span');
         const cartItemText = await page.textContent('#cart > div > div.container-fluid.cart-info.product-list > table > tbody > tr:nth-child(2) > td:nth-child(2) > a');
-        console.log(cartItemText);
         expect(cartItemText).to.have.string(itemNameText);
 
         await page.click('#cart > div > div.container-fluid.cart-info.product-list > table > tbody > tr:nth-child(2) > td:nth-child(7) > a');
@@ -145,6 +144,9 @@ describe('UI tests', async () => {
         await page.click('#cart > div > div.container-fluid.cart-info.product-list > table > tbody > tr:nth-child(2) > td:nth-child(7) > a');
         const emptyCartText = await page.textContent('#maincontainer > div > div > div > div');
         expect(emptyCartText).to.have.string('Your shopping cart is empty!');
+
+        const itemsInCart = await page.textContent('body > div > header > div.container-fluid > div > div.block_7 > ul > li > a > span.label.label-orange.font14');
+        expect(itemsInCart).to.have.string('0');
 
     });
     it('Оформить заказ', async() => {
