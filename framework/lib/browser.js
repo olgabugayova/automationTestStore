@@ -10,7 +10,7 @@ async function goto(url){
 };
 async function run(){
     browser = await playwright.chromium.launch({
-        headless: true,
+        headless: false,
         slowMo: 1000,
     });
     context = await browser.newContext();
