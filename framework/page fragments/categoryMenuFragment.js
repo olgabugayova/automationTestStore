@@ -13,24 +13,31 @@ const CategoryMenu = function() {
         await page.click(home);
     };
     this.gotoApparel = async function(page) {
+        await page.waitForSelector(apparelCategory);
         await page.click(apparelCategory);
     };
     this.gotoMakeup = async function(page) {
+        await page.waitForSelector(makeupCategory);
         await page.click(makeupCategory);
     };
     this.gotoSkincare = async function(page) {
+        await page.waitForSelector(skincareCategory);
         await page.click(skincareCategory);
     };
     this.gotoFragrance = async function(page) {
+        await page.waitForSelector(fragranceCategory);
         await page.click(fragranceCategory);
     };
     this.gotoMen = async function(page) {
+        await page.waitForSelector(menCategory);
         await page.click(menCategory);
     };
     this.gotoHaircare = async function(page) {
+        await page.waitForSelector(haircareCategory);
         await page.click(haircareCategory);
     };
     this.gotoBooks = async function(page) {
+        await page.waitForSelector(booksCategory);
         await page.click(booksCategory);
     };
 
