@@ -17,7 +17,7 @@ describe('Регистрация и авторизация в системе', (
         await page.waitForSelector('#customer_menu_top');
         await page.click('#customer_menu_top');
         await page.click('#accountFrm > fieldset > button');
-        const firstName = new PersonBuilder().addFirstName()
+        const firstName = new PersonBuilder().addFirstName();
         await page.click('#AccountFrm_firstname');
         await page.fill('#AccountFrm_firstname', firstName);
         await page.click('#AccountFrm_lastname');

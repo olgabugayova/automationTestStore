@@ -32,26 +32,35 @@ const LoginPage = function () {
     this.register = async function (page) {
         await pageFragment().NavBar().gotoLogin(page);
         await page.click(registerButton);
+        const newAccount = new PersonBuilder()
+        .addFirstName()
+        .addLastName()
+        .addEmail()
+        .addAddress()
+        .addCity()
+        .addUserName()
+        .addPassword()
+        .generate();
 
-        const firstName = new PersonBuilder().addFirstName();
+        const firstName = newAccount.firstName;
 
         await page.click(accountFirstNameField);
         await page.fill(accountFirstNameField, firstName);
         await page.click(accountLastNameField);
-        await page.fill(accountLastNameField, new PersonBuilder().addLastName());
+        await page.fill(accountLastNameField, newAccount.lastName);
         await page.click(accountEmailField);
-        await page.fill(accountEmailField, new PersonBuilder().addEmail());
+        await page.fill(accountEmailField, newAccount.email);
         await page.click(accountAddressField);
-        await page.fill(accountAddressField, new PersonBuilder().addAddress());
+        await page.fill(accountAddressField, newAccount.address);
         await page.click(accountCityField);
-        await page.fill(accountCityField, new PersonBuilder().addCity());
+        await page.fill(accountCityField, newAccount.city);
         await page.click(accountZoneField);
         await page.selectOption(accountZoneField, '3513');
         await page.click(accountPostcodeField);
         await page.fill(accountPostcodeField, '000000');
         await page.click(accountLoginnameField);
-        await page.fill(accountLoginnameField, new PersonBuilder().addUserName());
-        const password = new PersonBuilder().addPassword();
+        await page.fill(accountLoginnameField, newAccount.userName);
+        const password = newAccount.password;
         await page.click(accountPasswordField);
         await page.fill(accountPasswordField, password);
         await page.click(accountConfirmField);
