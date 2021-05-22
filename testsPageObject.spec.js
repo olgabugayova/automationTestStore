@@ -15,16 +15,15 @@ describe('Регистрация и авторизация в системе', (
         await stop();
     });
 
-    it.only('Регистрация', async() => {
+    it('Регистрация', async() => {
         const accountFirstName = await app().LoginPage().register(page);
-        // const profileNameText = await pageFragment().NavBar().getAccountName(page);
-        // expect(profileNameText).to.have.string(accountFirstName);
+        const profileNameText = await pageFragment().NavBar().getAccountName(page);
+        expect(profileNameText).to.have.string(accountFirstName);
     });
 
     it('Авторизация', async() => {
         await app().LoginPage().login(page);
-        const profileNameText = await pageFragment().NavBar().getAccountName(page);
-        expect(profileNameText).to.have.string('Welcome back Olga');
+        expect(await pageFragment().NavBar().getAccountName(page)).to.have.string('Welcome back Olga');
     });
 });
 
@@ -47,8 +46,7 @@ describe('UI tests', async () => {
         await app().ShoesPage().gotoProduct(page);
         const productNameText = await app().ProductPage().getProductName(page);
         await app().ProductPage().addToCart(page);
-        const itemNameText = await app().CartPage().getItemNameText(page);
-        expect(itemNameText).to.have.string(productNameText);
+        expect(await app().CartPage().getItemNameText(page)).to.have.string(productNameText);
         await app().CartPage().removeItem(page);
     });
 
@@ -59,11 +57,8 @@ describe('UI tests', async () => {
         await app().ProductPage().addToCart(page);
         await app().CartPage().removeItem(page);
 
-        const emptyCartText = await app().CartPage().getEmptyCartText(page);
-        expect(emptyCartText).to.have.string('Your shopping cart is empty!');
-
-        const itemsInCart = await app().CartPage().getItemsInCart(page);
-        expect(itemsInCart).to.have.string('0');
+        expect(await app().CartPage().getEmptyCartText(page)).to.have.string('Your shopping cart is empty!');
+        expect(await app().CartPage().getItemsInCart(page)).to.have.string('0');
     });
 
     it('Оформление заказа', async() => {
@@ -79,8 +74,6 @@ describe('UI tests', async () => {
         expect(await app().CheckoutSuccessPage().getOrderConfirmation(page)).to.have.string('Your Order Has Been Processed!');
 
         await app().CheckoutSuccessPage().gotoInvoicePage(page);
-
         expect(await app().InvoicePage().getInvoiceProductName(page)).to.have.string(productNameText);
     });
-
 });

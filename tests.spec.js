@@ -3,7 +3,7 @@ import { goto, run, stop } from './framework/lib/browser';
 import { PersonBuilder } from './framework/builder/newUser';
 const {expect} = chai;
 
-describe('Регистрация и авторизация в системе', () => {
+describe.skip('Регистрация и авторизация в системе', () => {
     let page;
     beforeEach(async () => {
         await run();
@@ -66,7 +66,7 @@ describe('Регистрация и авторизация в системе', (
     });
 });
 
-describe('UI tests', async () => {
+describe.skip('UI tests', async () => {
     let page;
     beforeEach(async () => {
         await run();

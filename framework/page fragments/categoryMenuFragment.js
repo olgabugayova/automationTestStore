@@ -1,13 +1,12 @@
 const CategoryMenu = function() {
-    const home = '#categorymenu > nav > ul > li:nth-child(1) > a';
     const apparelCategory = '#categorymenu > nav > ul > li:nth-child(2) > a';
-    const makeupCategory = '#categorymenu > nav > ul > li:nth-child(3) > a';
-    const skincareCategory = '#categorymenu > nav > ul > li:nth-child(4) > a';
-    const fragranceCategory = '#categorymenu > nav > ul > li:nth-child(5) > a';
-    const menCategory = '#categorymenu > nav > ul > li:nth-child(6) > a';
-    const haircareCategory = '#categorymenu > nav > ul > li:nth-child(7) > a';
     const booksCategory = '#categorymenu > nav > ul > li:nth-child(8) > a';
-
+    const fragranceCategory = '#categorymenu > nav > ul > li:nth-child(5) > a';
+    const haircareCategory = '#categorymenu > nav > ul > li:nth-child(7) > a';
+    const home = '#categorymenu > nav > ul > li:nth-child(1) > a';
+    const makeupCategory = '#categorymenu > nav > ul > li:nth-child(3) > a';
+    const menCategory = '#categorymenu > nav > ul > li:nth-child(6) > a';
+    const skincareCategory = '#categorymenu > nav > ul > li:nth-child(4) > a';
 
     this.gotoHome = async function(page) {
         await page.click(home);
