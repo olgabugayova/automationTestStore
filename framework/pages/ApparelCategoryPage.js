@@ -4,7 +4,7 @@ const ApparelCategoryPage = function () {
     this.gotoShoesCategory = async function (page) {
         await page.waitForSelector(shoesCategory);
         await page.click(shoesCategory);
-    };
-};
+    }
+}
 
 export { ApparelCategoryPage }
