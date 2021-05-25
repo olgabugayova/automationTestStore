@@ -1,4 +1,4 @@
-import { ApparelCategoryPage } from './ApparelCategoryPage';
+import { ApparelCategoryPage } from './apparelCategoryPage';
 import { CartPage } from './cartPage';
 import { CheckoutConfPage } from './checkoutConfPage';
 import { CheckoutSuccessPage } from './checkoutSuccessPage';
