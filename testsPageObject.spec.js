@@ -15,19 +15,19 @@ describe('Регистрация и авторизация в системе', (
         await stop();
     });
 
-    it('Регистрация', async() => {
+    it('пользователь может зарегистрироваться в магазине', async() => {
         const accountFirstName = await app().LoginPage().register(page);
         const profileNameText = await pageFragment().NavBar().getAccountName(page);
         expect(profileNameText).to.have.string(accountFirstName);
     });
 
-    it('Авторизация', async() => {
+    it('Пользвоатель может авторизоваться в магазине', async() => {
         await app().LoginPage().login(page);
         expect(await pageFragment().NavBar().getAccountName(page)).to.have.string('Welcome back Olga');
     });
 });
 
-describe('UI tests', async () => {
+describe('Основной функционал', async () => {
     let page;
     beforeEach(async () => {
         await run();
@@ -40,7 +40,7 @@ describe('UI tests', async () => {
         await stop();
     });
 
-    it('Добавление товара в корзину', async() => {
+    it('Пользователь может добавить товар в корзину', async() => {
         await pageFragment().CategoryMenu().gotoApparel(page);
         await app().ApparelCategoryPage().gotoShoesCategory(page);
         await app().ShoesPage().gotoProduct(page);
@@ -50,7 +50,7 @@ describe('UI tests', async () => {
         await app().CartPage().removeItem(page);
     });
 
-    it('Удаление товаров из корзины', async() => {
+    it('Пользователь может удалить товар из корзины', async() => {
         await pageFragment().CategoryMenu().gotoApparel(page);
         await app().ApparelCategoryPage().gotoShoesCategory(page);
         await app().ShoesPage().gotoProduct(page);
@@ -61,7 +61,7 @@ describe('UI tests', async () => {
         expect(await app().CartPage().getItemsInCart(page)).to.have.string('0');
     });
 
-    it('Оформление заказа', async() => {
+    it('Пользователь может оформить заказ', async() => {
         await pageFragment().CategoryMenu().gotoApparel(page);
         await app().ApparelCategoryPage().gotoShoesCategory(page);
         await app().ShoesPage().gotoProduct(page);
