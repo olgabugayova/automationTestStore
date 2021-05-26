@@ -2,8 +2,11 @@ import { pageFragment } from '../page fragments/index';
 import { PersonBuilder } from '../builder/newUser';
 
 const LoginPage = function () {
-    const accountAddressField = '#AccountFrm_address_1';
     const accountAgreeButton =  '#AccountFrm_agree';
+    const accountRegisterButton = '#AccountFrm > div.form-group > div > div > button';
+    const loginButton = '#loginFrm > fieldset > button';
+    const registerButton = '#accountFrm > fieldset > button';
+    const accountAddressField = '#AccountFrm_address_1';
     const accountCityField = '#AccountFrm_city';
     const accountConfirmField = '#AccountFrm_confirm';
     const accountEmailField = '#AccountFrm_email';
@@ -12,13 +15,9 @@ const LoginPage = function () {
     const accountLoginnameField = '#AccountFrm_loginname';
     const accountPasswordField = '#AccountFrm_password';
     const accountPostcodeField = '#AccountFrm_postcode';
-    const accountRegisterButton = '#AccountFrm > div.form-group > div > div > button';
     const accountZoneField = '#AccountFrm_zone_id';
-    const loginButton = '#loginFrm > fieldset > button';
     const loginnameField = '#loginFrm #loginFrm_loginname';
     const passwordField = '#loginFrm #loginFrm_password';
-    const registerButton = '#accountFrm > fieldset > button';
-
 
     this.login = async function (page) {
         await pageFragment().NavBar().gotoLogin(page);

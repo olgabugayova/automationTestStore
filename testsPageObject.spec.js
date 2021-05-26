@@ -34,7 +34,6 @@ describe('Основной функционал', async () => {
         page = await goto('https://automationteststore.com');
 
         await app().LoginPage().login(page);
-        await goto('https://automationteststore.com');
     });
     afterEach(async () => {
         await stop();
