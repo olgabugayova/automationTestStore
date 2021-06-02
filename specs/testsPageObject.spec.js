@@ -1,7 +1,7 @@
 import chai from 'chai';
-import { app } from './framework/pages/index';
-import { goto, run, stop } from './framework/lib/browser';
-import { pageFragment } from './framework/page fragments/index'
+import { app } from '../framework/pages';
+import { goto, run, stop } from '../framework/lib/browser';
+import { pageFragment } from '../framework/page fragments'
 
 const { expect } = chai;
 

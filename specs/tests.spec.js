@@ -1,6 +1,6 @@
 import chai from 'chai';
-import { goto, run, stop } from './framework/lib/browser';
-import { PersonBuilder } from './framework/builder/newUser';
+import { goto, run, stop } from '../framework/lib/browser';
+import { PersonBuilder } from '../framework/builder/newUser';
 const {expect} = chai;
 
 describe.skip('Регистрация и авторизация в системе', () => {
