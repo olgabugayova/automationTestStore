@@ -1,7 +1,7 @@
 import chai from 'chai';
-import { application } from '../framework/pagesClass';
+import { application } from '../framework/index';
 import { goto, run, stop } from '../framework/lib/browser';
-import { pageFragment } from '../framework/page fragments Class/index';
+import { pageFragment } from '../framework/page fragments/index';
 
 const { expect } = chai;
 let page;
@@ -20,7 +20,7 @@ describe.only('Регистрация и авторизация в систем�
 
     it('Пользователь может зарегистрироваться в магазине на классах', async() => {
         const accountFirstName = await app.LoginPageClass().register();
-        const profileNameText = await pageFragment().NavBar().getAccountName();
+        const profileNameText = await pageFragment().NavBar().getAccountName(page);
         expect(profileNameText).to.have.string(accountFirstName);
     });
 
@@ -29,7 +29,7 @@ describe.only('Регистрация и авторизация в систем�
         let urlSite = await app.LoginPageClass().url();
 
         expect(urlSite).to.have.string('automationteststore');
-        expect(await pageFragment().NavBar().getAccountName()).to.have.string('Welcome back Olga');
+        expect(await pageFragment().NavBar().getAccountName(page)).to.have.string('Welcome back Olga');
     });
 });
 

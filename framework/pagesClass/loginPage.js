@@ -1,11 +1,10 @@
 import { BasePage } from './basePage';
-import { pageFragment } from '../page fragments Class/index';
+import { pageFragment } from '../page fragments/index';
 import { PersonBuilder } from '../builder/newUser';
 
 class LoginPageClass extends BasePage {
     constructor(page) {
         super(page);
-        // this.page;
         this.accountAgreeButton =  '#AccountFrm_agree';
         this.accountRegisterButton = '#AccountFrm > div.form-group > div > div > button';
         this.loginButton = '#loginFrm > fieldset > button';
@@ -24,7 +23,7 @@ class LoginPageClass extends BasePage {
         this.passwordField = '#loginFrm #loginFrm_password';
     }
     async login() {
-        await pageFragment().NavBar().gotoLogin();
+        await pageFragment().NavBar().gotoLogin(this.page);
 
         await this.page.click(this.loginnameField);
         await this.page.fill(this.loginnameField, 'test_user5670695');
