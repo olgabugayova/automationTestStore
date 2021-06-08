@@ -1,5 +1,5 @@
 import { BasePage } from './basePage';
-import { pageFragment } from '../page fragments/index';
+import { application } from '../index';
 import { PersonBuilder } from '../builder/newUser';
 
 class LoginPageClass extends BasePage {
@@ -21,9 +21,10 @@ class LoginPageClass extends BasePage {
         this.accountZoneField = '#AccountFrm_zone_id';
         this.loginnameField = '#loginFrm #loginFrm_loginname';
         this.passwordField = '#loginFrm #loginFrm_password';
-    }
+    };
     async login() {
-        await pageFragment().NavBar().gotoLogin(this.page);
+        await application().NavBar().gotoLogin(this.page);
+        //await pageFragment().NavBar().gotoLogin(this.page);
 
         await this.page.click(this.loginnameField);
         await this.page.fill(this.loginnameField, 'test_user5670695');

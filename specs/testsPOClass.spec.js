@@ -6,7 +6,7 @@ import { pageFragment } from '../framework/page fragments/index';
 const { expect } = chai;
 let page;
 let app;
-describe.only('Регистрация и авторизация в системе', () => {
+describe('Регистрация и авторизация в системе', () => {
 
     beforeEach(async () => {
         await run();
@@ -24,12 +24,13 @@ describe.only('Регистрация и авторизация в систем�
         expect(profileNameText).to.have.string(accountFirstName);
     });
 
-    it('Пользователь может авторизоваться в магазине на классах', async() => {
+    it.only('Пользователь может авторизоваться в магазине на классах', async() => {
         await app.LoginPageClass().login();
         let urlSite = await app.LoginPageClass().url();
 
         expect(urlSite).to.have.string('automationteststore');
-        expect(await pageFragment().NavBar().getAccountName(page)).to.have.string('Welcome back Olga');
+        expect(await app.NavBar().getAccountName()).to.have.string('Welcome back Olga');
+       // expect(await pageFragment().NavBar().getAccountName(page)).to.have.string('Welcome back Olga');
     });
 });
 

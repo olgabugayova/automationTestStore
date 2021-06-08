@@ -4,10 +4,9 @@ class NavBarClass extends BasePage {
     constructor(page) {
         super(page);
         this.topMenuAccountButton = '#customer_menu_top > li > a';
-    }
+    };
 
     async gotoMyAccount() {
-
         await this.page.waitForSelector(this.topMenuAccountButton);
         await this.page.click(this.topMenuAccountButton);
     };
